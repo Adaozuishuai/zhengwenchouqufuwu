@@ -4,8 +4,8 @@ module.exports = {
     {
       name: "extract-api",
       cwd: "/opt/extract-service",
-      script: "./venv/bin/uvicorn",
-      args: "app.main:app --host 0.0.0.0 --port 8001",
+      script: "./venv/bin/python",
+      args: "-m uvicorn app.main:app --host 0.0.0.0 --port 8002",
       autorestart: true,
       max_memory_restart: "300M",
       env: {

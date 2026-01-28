@@ -50,7 +50,10 @@ url=`https://example.com` timeout=15
 ### 方式 1：Uvicorn 启动
 
 ```bash
-./venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8001
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+uvicorn app.main:app --host 0.0.0.0 --port 8002 --reload
 ```
 
 ### 方式 2：PM2 启动（可选）
@@ -78,17 +81,17 @@ pm2 logs extract-api
 ## 示例（curl）
 
 ```bash
-curl -sS -X POST 'http://127.0.0.1:8001/extract?url=https://example.com&timeout=15'
+curl -sS -X POST 'http://127.0.0.1:8002/extract?url=https://example.com&timeout=15'
 ```
 
 ```bash
-curl -sS -X POST 'http://127.0.0.1:8001/extract' \
+curl -sS -X POST 'http://127.0.0.1:8002/extract' \
   -H 'content-type: application/json' \
   -d '{"url":"https://example.com","timeout":15}'
 ```
 
 ```bash
-curl -sS -X POST 'http://127.0.0.1:8001/extract' \
+curl -sS -X POST 'http://127.0.0.1:8002/extract' \
   -H 'content-type: text/plain; charset=utf-8' \
   --data 'url=`https://example.com` timeout=15'
 ```

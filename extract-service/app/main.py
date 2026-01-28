@@ -45,6 +45,16 @@ async def _unhandled_exception_handler(request: Request, exc: Exception) -> JSON
 def health():
     return {"ok": True}
 
+
+@app.get("/")
+def root():
+    return {"ok": True}
+
+
+@app.get("/api/health")
+def api_health():
+    return {"ok": True}
+
 def _check_api_key(request: Request) -> None:
     if not API_KEY:
         return
@@ -416,6 +426,7 @@ def _build_lead(author: str, date: str) -> str:
     return " ".join(parts).strip()
 
 @app.post("/extract")
+@app.post("/api/extract")
 async def extract(request: Request) -> Dict[str, Any]:
     _check_api_key(request)
 
